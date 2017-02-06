@@ -2234,11 +2234,12 @@ tsetmode(int priv, int set, int *args, int narg)
 				MODBIT(term.mode, set, MODE_BRCKTPASTE);
 				break;
 			/* Not implemented mouse modes. See comments there. */
-			case 1001: /* mouse highlight mode; can hang the
-				      terminal by design when implemented. */
 			case 1005: /* UTF-8 mouse mode; will confuse
 				      applications not supporting UTF-8
 				      and luit. */
+                break;
+			case 1001: /* mouse highlight mode; can hang the
+				      terminal by design when implemented. */
 			case 1015: /* urxvt mangled mouse mode; incompatible
 				      and can be mistaken for other control
 				      codes. */
