@@ -2482,6 +2482,14 @@ csihandle(void)
 			goto unknown;
 		}
 		break;
+	case 't':
+		if (csiescseq.narg == 3 && csiescseq.arg[0] == 8) {
+			/* Resize window */
+			/* https://www.gnu.org/software/screen/manual/html_node/Control-Sequences.html */
+			tresize(csiescseq.arg[2], csiescseq.arg[1]);
+			break;
+		}
+		goto unknown;
 	}
 }
 
