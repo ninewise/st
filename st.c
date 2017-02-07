@@ -2237,7 +2237,7 @@ tsetmode(int priv, int set, int *args, int narg)
 			case 1005: /* UTF-8 mouse mode; will confuse
 				      applications not supporting UTF-8
 				      and luit. */
-                break;
+				break;
 			case 1001: /* mouse highlight mode; can hang the
 				      terminal by design when implemented. */
 			case 1015: /* urxvt mangled mouse mode; incompatible
@@ -2482,11 +2482,24 @@ csihandle(void)
 			goto unknown;
 		}
 		break;
+	/* http://invisible-island.net/xterm/ctlseqs/ctlseqs.html */
 	case 't':
-		if (csiescseq.narg == 3 && csiescseq.arg[0] == 8) {
-			/* Resize window */
-			/* https://www.gnu.org/software/screen/manual/html_node/Control-Sequences.html */
+		switch (csiescseq.arg[0]) {
+		case 8: /* Resize window */
 			tresize(csiescseq.arg[2], csiescseq.arg[1]);
+			break;
+		case 22:
+			if (csiescseq.arg[1] == 2) break; /* Save xterm window title on stack */
+		case 23:
+			if (csiescseq.arg[1] == 2) break; /* Restore xterm window title from stack */
+		default:
+			goto unknown;
+		}
+		break;
+	case '!':
+		if (csiescseq.mode[1] == 'p') {
+			/* DECSTR -- Soft terminal reset */
+			treset();
 			break;
 		}
 		goto unknown;
