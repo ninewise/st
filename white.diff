@@ -1,0 +1,19 @@
+diff --git a/config.h b/config.h
+index 6155bcc..9db6609 100644
+--- a/config.h
++++ b/config.h
+@@ -116,10 +116,10 @@ const char *colorname[] = {
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
+-unsigned int defaultcs = 256;
+-unsigned int defaultrcs = 257;
++unsigned int defaultfg = 0;
++unsigned int defaultbg = 15;
++unsigned int defaultcs = 257;
++unsigned int defaultrcs = 256;
+ 
+ /*
+  * Default shape of cursor
