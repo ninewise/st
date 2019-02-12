@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka Medium-11";
+static char *font = "M+ 1mn medium-11";
 static int borderpx = 2;
 
 /*
